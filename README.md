@@ -7,7 +7,7 @@
 
 # Bases de datos del Censo escolar
 
-Funciones para descargar las bases del censo escolar según año indicado
+Funciones para descargar las bases y los diccionarios de datos del censo escolar según año indicado.
 
 ## Llamar a las funciones 
 
