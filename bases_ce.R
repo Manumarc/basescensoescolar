@@ -58,7 +58,15 @@ descargar_censo <- function(anio,
     as.integer() %>%
     unique()
   
-  total_pages <- if (length(pages_detected) == 0) 1 else max(pages_detected)
+  total_pages <- if (length(pages_detected) == 0) {
+    
+    1
+    
+  } else {
+    
+    max(pages_detected) + 1
+    
+  }
   
   vmsg("Páginas detectadas para ", anio, ": ", total_pages)
   
