@@ -1,4 +1,4 @@
-# Paquetes requeridos
+# Librerías requeridas
 
 - library(rvest)
 - library(stringr) 
