@@ -14,7 +14,7 @@ Funciones para descargar las bases y los diccionarios de datos del censo escolar
 Para llamar a la función desarrollada se debe usar el siguiente código:
 
 ```
-devtools::source_url("https://https://raw.githubusercontent.com/Manumarc/basescensoescolar/refs/heads/main/bases_ce.R")
+devtools::source_url("https://raw.githubusercontent.com/Manumarc/basescensoescolar/refs/heads/main/bases_ce.R")
 
 ```
 ## Descargar bases
