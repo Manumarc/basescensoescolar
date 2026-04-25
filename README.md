@@ -3,7 +3,7 @@
 - library(rvest)
 - library(stringr) 
 - library(purrr) 
-- library(dplyr) 
+- library(httr) 
 
 # Bases de datos del Censo escolar
 
@@ -27,5 +27,7 @@ La función "descargar_censo" permite descargar las bases del Censo escolar desd
 #                           verbose = TRUE)
 
 descargar_censo(2024, "01 Bases")
+
+descargar_censo(c(2022,2023), "01 Bases")
 
 ```
