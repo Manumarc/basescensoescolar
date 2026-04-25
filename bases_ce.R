@@ -54,9 +54,14 @@ descargar_censo <- function(anio,
   if (is.null(root_pg)) stop("No se pudo leer la página raíz: ", root_url)
   
   # Buscar <a> con texto que sea exactamente el año
-  nodes_a <- root_pg %>% html_nodes("a")
-  texts <- nodes_a %>% html_text(trim = TRUE)
-  hrefs <- nodes_a %>% html_attr("href")
+  nodes_a <- root_pg %>% 
+    html_nodes("a")
+  
+  texts <- nodes_a %>% 
+    html_text(trim = TRUE)
+  
+  hrefs <- nodes_a %>% 
+    html_attr("href")
   
   # Seleccionar primer "href" con texto que coincide con el año
   idx <- which(texts == as.character(anio))
@@ -134,6 +139,7 @@ descargar_censo <- function(anio,
     map(extract_subpages) %>%
     unlist() %>%
     unique()
+  
   vmsg("Subpáginas encontradas: ", length(all_subpages))
   if (length(all_subpages) == 0) vmsg("No se encontraron subpáginas; revisar la estructura HTML")
   
@@ -157,12 +163,17 @@ descargar_censo <- function(anio,
     
     # Buscar hrefs que terminen en .zip
     hrefs <- pg %>% html_nodes("a") %>% html_attr("href")
+    
     hrefs <- hrefs[!is.na(hrefs)]
+    
     zips <- hrefs[str_detect(hrefs, "\\.zip($|\\?)")]
     if (length(zips) > 0) return(fix_url(zips[1]))
     
     # Buscar en bloques de texto (pre, div, p) enlaces "documents/..."
-    textos <- pg %>% html_nodes("pre, p, div") %>% html_text(trim = TRUE)
+    textos <- pg %>% 
+      html_nodes("pre, p, div") %>% 
+      html_text(trim = TRUE)
+    
     candidatos <- textos[str_detect(textos, "https?://escale\\.minedu\\.gob\\.pe/documents/")]
     if (length(candidatos) > 0) {
       
@@ -180,8 +191,12 @@ descargar_censo <- function(anio,
   }
   
   vmsg("Extrayendo enlaces reales de ZIP (esto puede demorar)...")
-  zip_links_raw <- all_subpages %>% map_chr(get_real_zip)
+  
+  zip_links_raw <- all_subpages %>% 
+    map_chr(get_real_zip)
+  
   zip_links <- unique(zip_links_raw[!is.na(zip_links_raw)])
+  
   vmsg("ZIPs reales detectados: ", length(zip_links))
   
   # Preparar carpeta de salida y descargar #
